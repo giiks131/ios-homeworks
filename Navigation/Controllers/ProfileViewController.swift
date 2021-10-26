@@ -12,6 +12,7 @@ class FirstProfileViewController: UIViewController {
         button.setTitle(Post(title:"Show my Card").title, for: .normal)
         button.backgroundColor = .systemMint
         button.setTitleColor(.black, for: .normal)
+        button.layer.cornerRadius = 8
         button.frame = CGRect(x: 100, y: 100, width: 200, height: 52)
         button.addTarget(self, action: #selector(didTapButtonOne), for: .touchUpInside)
 
@@ -43,6 +44,7 @@ class SecondProfileViewController: UIViewController {
         button.setTitle(Post(title: "Show my settings").title, for: .normal)
         button.backgroundColor = .systemPurple
         button.setTitleColor(.black, for: .normal)
+        button.layer.cornerRadius = 8
         button.frame = CGRect(x: 100, y: 100, width: 200, height: 60)
         button.titleLabel?.textAlignment = .center
         button.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
@@ -69,6 +71,7 @@ class InfoViewController: UIViewController {
         button.setTitle(Post(title:"Show Info").title, for: .normal)
         button.backgroundColor = .systemPurple
         button.setTitleColor(.black, for: .normal)
+        button.layer.cornerRadius = 8
         button.frame = CGRect(x: 100, y: 100, width: 200, height: 60)
         button.titleLabel?.textAlignment = .center
         button.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
