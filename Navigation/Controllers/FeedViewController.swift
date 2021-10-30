@@ -67,7 +67,7 @@ class InfoViewController: UIViewController {
     }
     @objc func showAlert() {
         let alert = UIAlertController(title: Post(title:"ERROR").title, message: "Sorry, no share options. Please check later", preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: {
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {
             (action: UIAlertAction!) in
             print("OK was pressed")
         }))
@@ -76,8 +76,4 @@ class InfoViewController: UIViewController {
         }))
         present(alert, animated: true, completion: nil)
     }
-}
-
-struct Post {
-    let title: String
 }
