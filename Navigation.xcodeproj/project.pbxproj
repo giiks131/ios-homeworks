@@ -41,6 +41,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F274CE552729E279005851B0 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		F27E2829271B3769009B86A1 = {
 			isa = PBXGroup;
 			children = (
@@ -60,6 +67,7 @@
 		F27E2834271B3769009B86A1 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				F274CE552729E279005851B0 /* Profile */,
 				F288438C27273B64001C4D15 /* Application */,
 				F288438D27273B81001C4D15 /* Controllers */,
 				F288438E27273B93001C4D15 /* Resources */,
