@@ -11,7 +11,7 @@ class ViewController: UITabBarController {
     func setupTabBar() {
         let feedViewController = creativeNavController(viewController: FeedViewController(), itemName: "Feed", ItemImage: "newspaper")
         let messagesViewController = creativeNavController(viewController: MessagesViewController(), itemName: "Messages", ItemImage: "message.fill")
-        let profileViewController = creativeNavController(viewController: FirstProfileViewController(), itemName: "Profile", ItemImage: "rectangle.stack.person.crop")
+        let profileViewController = creativeNavController(viewController: FirstProfileViewController(), itemName: "Profile", ItemImage: "person.crop.circle")
         
         viewControllers = [feedViewController, messagesViewController, profileViewController]
 
