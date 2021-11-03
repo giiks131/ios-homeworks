@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "котик-милый-6241576.jpeg",
+      "filename" : "catAvatar1.jpeg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "котик-милый-6241577.jpeg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "котик-милый-6241578.jpeg",
       "idiom" : "universal",
       "scale" : "3x"
     }
