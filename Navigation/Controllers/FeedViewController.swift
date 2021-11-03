@@ -1,26 +1,66 @@
 import UIKit
 
 class FeedViewController: UIViewController {
-    let button = UIButton()
+     var buttonFirst: UIButton = {
+        let button = UIButton()
+        button.setTitle(Post(title:"Open new post").title, for: .normal)
+        button.backgroundColor = .systemMint
+        button.setTitleColor(.black, for: .normal)
+        button.layer.cornerRadius = 8
+        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    var buttonSecond: UIButton = {
+        let button = UIButton()
+        button.setTitle(Post(title:"Open new post").title, for: .normal)
+        button.backgroundColor = .systemMint
+        button.setTitleColor(.black, for: .normal)
+        button.layer.cornerRadius = 8
+        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 10
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         title = "Feed"
-        
-        view.addSubview(button)
-        button.setTitle(Post(title:"Open new post").title, for: .normal)
-        button.backgroundColor = .systemMint
-        button.setTitleColor(.black, for: .normal)
-        button.layer.cornerRadius = 8
-        button.frame = CGRect(x: 100, y: 100, width: 200, height: 52)
-        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        view.addSubview(buttonFirst)
+        view.addSubview(buttonSecond)
+        view.addSubview(stackView)
+        stackView.addArrangedSubview(buttonFirst)
+        stackView.addArrangedSubview(buttonSecond)
+        setupViews()
     }
    
     @objc private func didTapButton() {
         let rootVC = PostViewController()
         rootVC.view.backgroundColor = .white
         navigationController?.pushViewController(rootVC, animated: true)
+    }
+    
+    func setupViews() {
+        let constraints = [
+            stackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            stackView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.5),
+            buttonFirst.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 0.45),
+            buttonSecond.heightAnchor.constraint(equalTo: buttonFirst.heightAnchor)
+        ]
+        
+        NSLayoutConstraint.activate(constraints)
+        view.layoutIfNeeded()
+        view.setNeedsLayout()
     }
 }
 
@@ -39,14 +79,12 @@ class PostViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain,target: self, action: #selector(didTapButton))
     }
     
-
     @objc private func didTapButton() {
         let rootVC = InfoViewController()
         let navVC = UINavigationController(rootViewController: rootVC)
         present(navVC, animated: true)
     }
 }
-
 
 class InfoViewController: UIViewController {
 
@@ -77,3 +115,4 @@ class InfoViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
 }
+

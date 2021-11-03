@@ -10,7 +10,6 @@ class ViewController: UITabBarController {
         self.tabBar.backgroundColor = .systemGray5
     }
     
-    
     func setupTabBar() {
         let feedViewController = creativeNavController(viewController: FeedViewController(), itemName: "Feed", ItemImage: "newspaper")
         let messagesViewController = creativeNavController(viewController: MessagesViewController(), itemName: "Messages", ItemImage: "message.fill")
