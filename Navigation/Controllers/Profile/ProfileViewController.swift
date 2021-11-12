@@ -1,10 +1,12 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
+    
+    private lazy var userLoggedIn: Bool = false
+    private lazy var logInViewController = LogInViewController()
+    private let header = ProfileViewHeader()
 
-    let header = ProfileViewHeader()
-
-    var bottomButton: UIButton = {
+    private lazy var bottomButton: UIButton = {
         let bottomButton = UIButton()
         bottomButton.setTitle(Post(title: "Bottom button").title, for: .normal)
         bottomButton.backgroundColor = .systemCyan
@@ -28,13 +30,25 @@ class ProfileViewController: UIViewController {
         view.addSubview(bottomButton)
         setupConstraints()
     }
-
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        if (userLoggedIn) == false {
+            userLogIn()
+        }
+    }
+    
+    func userLogIn() {
+        navigationController?.pushViewController(logInViewController, animated: true)
+        userLoggedIn = true
+    }
+    
     func setupConstraints() {
         let constraints = [
             header.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             header.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             header.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            header.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),       
+            header.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             bottomButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             bottomButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             bottomButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
