@@ -72,12 +72,6 @@ class ProfileViewHeader: UIView {
     
     func setupViews() {
        
-        // MARK: - Если не ставить high priority к buttonWidth, то почему-то xCode ругается в консоли. Гугл не сильно помог в теории, только как решить проблему. Если подскажете, почему так надо делать, то буду благодарен
-        
-        let buttonWidth = setStatusButton.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -32)
-        buttonWidth.priority = .defaultHigh
-
-        
         let constraints = [
             fullNameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             fullNameLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 27),
@@ -100,7 +94,7 @@ class ProfileViewHeader: UIView {
             setStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: 10),
             setStatusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             setStatusButton.heightAnchor.constraint(equalToConstant: 50),
-            buttonWidth,
+            setStatusButton.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -32),
             setStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
         ]
         
