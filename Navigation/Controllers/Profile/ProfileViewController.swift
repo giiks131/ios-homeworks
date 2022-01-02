@@ -2,7 +2,7 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    private lazy var userLoggedIn: Bool = false
+   
     private lazy var logInViewController = LogInViewController()
     private let profileTableView = UITableView(frame: .zero, style: .grouped)
     
@@ -19,17 +19,6 @@ class ProfileViewController: UIViewController {
         setupTableView()
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        if (userLoggedIn) == false {
-            userLogIn()
-        }
-    }
-    
-    func userLogIn() {
-        navigationController?.pushViewController(logInViewController, animated: true)
-        userLoggedIn = true
-    }
     
     func setupTableView() {
         profileTableView.register(PostTableViewCell.self, forCellReuseIdentifier: CellReuseID.default.rawValue)
@@ -82,11 +71,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
   
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return nil
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return Constants.CGFloatNumbers.px0
-    }
+//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return Constants.CGFloatNumbers.px0
+//    }
 }

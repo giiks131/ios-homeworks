@@ -36,7 +36,6 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         avatarImageView.layer.borderColor = UIColor.white.cgColor
         avatarImageView.layer.masksToBounds = true
         avatarImageView.translatesAutoresizingMaskIntoConstraints = false
-        avatarImageView.layer.cornerRadius = avatarImageView.bounds.size.width / 2
         return avatarImageView
     }()
     
@@ -73,18 +72,17 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.layoutIfNeeded()
         avatarImageView.layer.cornerRadius = avatarImageView.bounds.size.width / 2
     }
     
     func setupViews() {
+
         contentView.addSubview(fullNameLabel)
         contentView.addSubview(statusLabel)
         contentView.addSubview(avatarImageView)
         contentView.addSubview(setStatusButton)
         contentView.addSubview(statusTextField)
         
-        avatarImageView.layer.cornerRadius = avatarImageView.bounds.size.width / 2
         
         let buttonWidth = setStatusButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -Constants.CGFloatNumbers.px32)
         buttonWidth.priority = .defaultHigh
@@ -116,14 +114,13 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
             buttonWidth,
         ]
         
-        layoutIfNeeded()
-        setNeedsLayout()
         NSLayoutConstraint.activate(constraints)
     }
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         setupViews()
+        layoutIfNeeded()
     }
     
     required init?(coder: NSCoder) {
@@ -138,5 +135,5 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     @objc func statusTextChanged(_ textField: UITextField) {
         statusText = statusTextField.text ?? "Empty"
     }
-    
+   
 }

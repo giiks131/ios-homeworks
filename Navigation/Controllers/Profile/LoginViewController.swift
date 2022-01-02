@@ -1,6 +1,7 @@
 import UIKit
 
 class LogInViewController: UIViewController {
+    private lazy var userLoggedIn: Bool = false
     
     private let scrollView = UIScrollView()
     private let customContainerView = UIView()
@@ -91,6 +92,7 @@ class LogInViewController: UIViewController {
         return loginAndPasswordStackView
     }()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
@@ -99,6 +101,7 @@ class LogInViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardAppeared), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDisappeared), name: UIResponder.keyboardWillHideNotification, object: nil)
+       
     }
     
     @objc func keyboardAppeared(notification: NSNotification) {
@@ -113,10 +116,21 @@ class LogInViewController: UIViewController {
         scrollView.verticalScrollIndicatorInsets = .zero
     }
     
+    
     @objc func logIn() {
-        navigationController?.popViewController(animated: true)
-        navigationController?.tabBarController?.tabBar.isHidden = false
-        navigationController?.navigationBar.isHidden = false
+        let profileVC = ProfileViewController()
+        
+        if userLoggedIn == false {
+            navigationController?.popViewController(animated: true)
+            navigationController?.tabBarController?.tabBar.isHidden = false
+            navigationController?.navigationBar.isHidden = false
+            navigationController?.pushViewController(profileVC, animated: true)
+            userLoggedIn = true
+        }
+        
+        if userLoggedIn == true {
+            navigationController?.setViewControllers([profileVC], animated: true)
+        }
     }
     
     func setupViews() {
