@@ -5,6 +5,10 @@ struct Post {
 }
 
 struct Constants {
+    
+    static let spacer: CGFloat = 16
+    static let halfSpacer: CGFloat = 8
+    
     struct CGFloatNumbers {
         static let px0: CGFloat = 0
         static let px1: CGFloat = 1
@@ -27,6 +31,7 @@ struct Constants {
         static let px18: CGFloat = 18
         static let px19: CGFloat = 19
         static let px20: CGFloat = 20
+        static let px24: CGFloat = 24
         static let px27: CGFloat = 27
         static let px28: CGFloat = 28
         static let px32: CGFloat = 32

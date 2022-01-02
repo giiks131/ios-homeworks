@@ -20,6 +20,9 @@
 		F288439027273BAD001C4D15 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F288438F27273BAD001C4D15 /* FeedViewController.swift */; };
 		F288439227273BBA001C4D15 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F288439127273BBA001C4D15 /* MessagesViewController.swift */; };
 		F288439427273BC9001C4D15 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F288439327273BC9001C4D15 /* ProfileViewController.swift */; };
+		F2C374982782261F002EFE5E /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C374972782261F002EFE5E /* PhotosViewController.swift */; };
+		F2C3749A2782262B002EFE5E /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C374992782262B002EFE5E /* PhotosCollectionViewCell.swift */; };
+		F2C3749C27822636002EFE5E /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C3749B27822636002EFE5E /* PhotosTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +41,9 @@
 		F288438F27273BAD001C4D15 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		F288439127273BBA001C4D15 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		F288439327273BC9001C4D15 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		F2C374972782261F002EFE5E /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		F2C374992782262B002EFE5E /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
+		F2C3749B27822636002EFE5E /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,7 @@
 				F2798DB9272DB75200497B70 /* ProfileTableHeaderView.swift */,
 				F23BA4E627500F35003DF08F /* PostTableViewCell.swift */,
 				F2816130273EB6C8005CDA49 /* LoginViewController.swift */,
+				F2C374962782260F002EFE5E /* Photos */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -126,6 +133,16 @@
 				F27E2843271B376B009B86A1 /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		F2C374962782260F002EFE5E /* Photos */ = {
+			isa = PBXGroup;
+			children = (
+				F2C374972782261F002EFE5E /* PhotosViewController.swift */,
+				F2C374992782262B002EFE5E /* PhotosCollectionViewCell.swift */,
+				F2C3749B27822636002EFE5E /* PhotosTableViewCell.swift */,
+			);
+			path = Photos;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,11 +219,14 @@
 				F2816131273EB6C8005CDA49 /* LoginViewController.swift in Sources */,
 				F2816133273EBA60005CDA49 /* Structs.swift in Sources */,
 				F288439427273BC9001C4D15 /* ProfileViewController.swift in Sources */,
+				F2C3749A2782262B002EFE5E /* PhotosCollectionViewCell.swift in Sources */,
 				F288439227273BBA001C4D15 /* MessagesViewController.swift in Sources */,
 				F27E283A271B3769009B86A1 /* ViewController.swift in Sources */,
 				F2798DBC272DB77500497B70 /* Data.swift in Sources */,
+				F2C3749C27822636002EFE5E /* PhotosTableViewCell.swift in Sources */,
 				F27E2836271B3769009B86A1 /* AppDelegate.swift in Sources */,
 				F2798DBA272DB75200497B70 /* ProfileTableHeaderView.swift in Sources */,
+				F2C374982782261F002EFE5E /* PhotosViewController.swift in Sources */,
 				F288439027273BAD001C4D15 /* FeedViewController.swift in Sources */,
 				F27E2838271B3769009B86A1 /* SceneDelegate.swift in Sources */,
 			);
