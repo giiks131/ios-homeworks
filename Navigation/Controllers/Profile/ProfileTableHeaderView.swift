@@ -2,7 +2,18 @@ import UIKit
 
 class ProfileTableHeaderView: UITableViewHeaderFooterView {
     
+    var defaultAvatarCenter: CGPoint = CGPoint(x: 0, y: 0)
+    var defaultAvatarCorner: CGFloat = CGFloat()
+    
     private lazy var statusText: String = "Waiting for something..."
+    
+    private lazy var backgroundFrame: UIView = {
+        let backgroundFrame = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        backgroundFrame.backgroundColor = .black
+        backgroundFrame.alpha = 0
+        backgroundFrame.translatesAutoresizingMaskIntoConstraints = false
+        return backgroundFrame
+    }()
 
     private lazy var fullNameLabel: UILabel = {
         let fullNameLabel = UILabel()
@@ -35,8 +46,19 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         avatarImageView.layer.borderWidth = 3
         avatarImageView.layer.borderColor = UIColor.white.cgColor
         avatarImageView.layer.masksToBounds = true
+        avatarImageView.isUserInteractionEnabled = true
         avatarImageView.translatesAutoresizingMaskIntoConstraints = false
         return avatarImageView
+    }()
+    
+    private lazy var crossImage: UIImageView = {
+        let crossImage = UIImageView()
+        crossImage.image = UIImage(systemName: "multiply.square")
+        crossImage.tintColor = .lightGray
+        crossImage.alpha = 0
+        crossImage.isUserInteractionEnabled = true
+        crossImage.translatesAutoresizingMaskIntoConstraints = false
+        return crossImage
     }()
     
     private lazy var statusTextField: UITextField = {
@@ -72,16 +94,18 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        avatarImageView.layer.cornerRadius = avatarImageView.bounds.size.width / 2
+        avatarImageView.layer.cornerRadius = avatarImageView.bounds.size.height / 2
     }
     
     func setupViews() {
 
         contentView.addSubview(fullNameLabel)
         contentView.addSubview(statusLabel)
-        contentView.addSubview(avatarImageView)
         contentView.addSubview(setStatusButton)
         contentView.addSubview(statusTextField)
+        contentView.addSubview(backgroundFrame)
+        contentView.addSubview(avatarImageView)
+        contentView.addSubview(crossImage)
         
         
         let buttonWidth = setStatusButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -Constants.CGFloatNumbers.px32)
@@ -99,6 +123,11 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
             avatarImageView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: Constants.CGFloatNumbers.px16),
             avatarImageView.widthAnchor.constraint(lessThanOrEqualToConstant: Constants.CGFloatNumbers.px110),
             avatarImageView.heightAnchor.constraint(equalTo: avatarImageView.widthAnchor),
+            
+            crossImage.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 30),
+            crossImage.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -60),
+            crossImage.widthAnchor.constraint(equalToConstant: 45),
+            crossImage.heightAnchor.constraint(equalToConstant: 45),
 
             statusLabel.topAnchor.constraint(greaterThanOrEqualTo: avatarImageView.centerYAnchor, constant: Constants.CGFloatNumbers.px20),
             statusLabel.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor),
@@ -121,6 +150,18 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         super.init(reuseIdentifier: reuseIdentifier)
         setupViews()
         layoutIfNeeded()
+        
+        let avatarGesture = UITapGestureRecognizer(
+            target: self,
+            action: #selector(avatarTapGesture)
+        )
+        avatarImageView.addGestureRecognizer(avatarGesture)
+
+        let crossGesture = UITapGestureRecognizer(
+            target: self,
+            action: #selector(crossTapGesture)
+        )
+        crossImage.addGestureRecognizer(crossGesture)
     }
     
     required init?(coder: NSCoder) {
@@ -134,6 +175,51 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     
     @objc func statusTextChanged(_ textField: UITextField) {
         statusText = statusTextField.text ?? "Empty"
+    }
+    
+    @objc private func avatarTapGesture(gesture: UITapGestureRecognizer) {
+        UIView.animate(withDuration: 0.5,
+                       delay: 0,
+                       options: []
+        ) {
+            self.defaultAvatarCenter = self.avatarImageView.center
+            self.defaultAvatarCorner = self.avatarImageView.layer.cornerRadius
+            self.avatarImageView.center = CGPoint(
+               x: UIScreen.main.bounds.midX,
+               y: UIScreen.main.bounds.midY
+           )
+            self.avatarImageView.transform = CGAffineTransform(scaleX: self.contentView.frame.width / self.avatarImageView.frame.width, y: self.contentView.frame.width / self.avatarImageView.frame.width)
+            self.avatarImageView.layer.cornerRadius = 0
+            self.backgroundFrame.alpha = 0.8
+            
+            ProfileViewController.profileTableView.isScrollEnabled = false
+            ProfileViewController.profileTableView.cellForRow(at: IndexPath(item: 0, section: 0))?.isUserInteractionEnabled = false
+           
+            UIView.animate(
+                withDuration: 0.3,
+                delay: 0.5,
+                options: []
+            ) {
+                self.crossImage.alpha = 1
+            }
+        }
+    }
+    
+    @objc private func crossTapGesture(gesture: UITapGestureRecognizer) {
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0,
+            options: []
+        ){
+            self.crossImage.alpha = 0
+            self.avatarImageView.center = self.defaultAvatarCenter
+            self.avatarImageView.transform = CGAffineTransform(scaleX: 1, y: 1)
+            self.avatarImageView.layer.cornerRadius = self.defaultAvatarCorner
+            self.backgroundFrame.alpha = 0
+            
+            ProfileViewController.profileTableView.isScrollEnabled = true
+            ProfileViewController.profileTableView.cellForRow(at: IndexPath(item: 0, section: 0))?.isUserInteractionEnabled = true
+        }
     }
    
 }

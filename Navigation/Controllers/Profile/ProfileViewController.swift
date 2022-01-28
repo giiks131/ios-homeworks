@@ -2,7 +2,7 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    private let profileTableView = UITableView(frame: .zero, style: .grouped)
+    static var profileTableView = UITableView(frame: .zero, style: .grouped)
     
     enum CellReuseID: String {
         case `default` = "TableViewCellReuseID"
@@ -12,7 +12,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
-        view.addSubview(profileTableView)
+        view.addSubview(ProfileViewController.profileTableView)
         setupConstraints()
         setupTableView()
     }
@@ -22,29 +22,25 @@ class ProfileViewController: UIViewController {
     }
     
     func setupTableView() {
-        profileTableView.register(PostTableViewCell.self, forCellReuseIdentifier: CellReuseID.default.rawValue)
-        profileTableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: CellReuseID.photos.rawValue)
-        profileTableView.register(ProfileTableHeaderView.self, forHeaderFooterViewReuseIdentifier: "header")
-        profileTableView.dataSource = self
-        profileTableView.delegate = self
-        profileTableView.rowHeight = UITableView.automaticDimension
+        ProfileViewController.profileTableView.register(PostTableViewCell.self, forCellReuseIdentifier: CellReuseID.default.rawValue)
+        ProfileViewController.profileTableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: CellReuseID.photos.rawValue)
+        ProfileViewController.profileTableView.register(ProfileTableHeaderView.self, forHeaderFooterViewReuseIdentifier: "header")
+        ProfileViewController.profileTableView.dataSource = self
+        ProfileViewController.profileTableView.delegate = self
+        ProfileViewController.profileTableView.rowHeight = UITableView.automaticDimension
     }
 
     func setupConstraints() {
-        profileTableView.translatesAutoresizingMaskIntoConstraints = false
+        ProfileViewController.profileTableView.translatesAutoresizingMaskIntoConstraints = false
         let constraints = [
-            profileTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            profileTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            profileTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            profileTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            ProfileViewController.profileTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            ProfileViewController.profileTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            ProfileViewController.profileTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            ProfileViewController.profileTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
         ]
-        
         NSLayoutConstraint.activate(constraints)
-        
     }
-    
 }
-
 
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
@@ -67,7 +63,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             
             return photoSectionTableViewCell
         } else {
-            let cell = profileTableView.dequeueReusableCell(withIdentifier: CellReuseID.default.rawValue, for: indexPath) as! PostTableViewCell
+            let cell = ProfileViewController.profileTableView.dequeueReusableCell(withIdentifier: CellReuseID.default.rawValue, for: indexPath) as! PostTableViewCell
                 cell.post = DataStorage.profileTableViewPosts[indexPath.row]
             
             return cell
@@ -75,7 +71,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = profileTableView.dequeueReusableHeaderFooterView(withIdentifier: "header")
+        let header = ProfileViewController.profileTableView.dequeueReusableHeaderFooterView(withIdentifier: "header")
         return header
     }
     
