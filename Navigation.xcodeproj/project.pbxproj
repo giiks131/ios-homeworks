@@ -11,7 +11,6 @@
 		F2798DBA272DB75200497B70 /* ProfileTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2798DB9272DB75200497B70 /* ProfileTableHeaderView.swift */; };
 		F2798DBC272DB77500497B70 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2798DBB272DB77500497B70 /* Data.swift */; };
 		F27E2836271B3769009B86A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27E2835271B3769009B86A1 /* AppDelegate.swift */; };
-		F27E2838271B3769009B86A1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27E2837271B3769009B86A1 /* SceneDelegate.swift */; };
 		F27E283A271B3769009B86A1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27E2839271B3769009B86A1 /* ViewController.swift */; };
 		F27E283F271B376B009B86A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F27E283E271B376B009B86A1 /* Assets.xcassets */; };
 		F27E2842271B376B009B86A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F27E2840271B376B009B86A1 /* LaunchScreen.storyboard */; };
@@ -31,7 +30,6 @@
 		F2798DBB272DB77500497B70 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		F27E2832271B3769009B86A1 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F27E2835271B3769009B86A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F27E2837271B3769009B86A1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F27E2839271B3769009B86A1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F27E283E271B376B009B86A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F27E2841271B376B009B86A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -109,7 +107,6 @@
 			isa = PBXGroup;
 			children = (
 				F27E2835271B3769009B86A1 /* AppDelegate.swift */,
-				F27E2837271B3769009B86A1 /* SceneDelegate.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -228,7 +225,6 @@
 				F2798DBA272DB75200497B70 /* ProfileTableHeaderView.swift in Sources */,
 				F2C374982782261F002EFE5E /* PhotosViewController.swift in Sources */,
 				F288439027273BAD001C4D15 /* FeedViewController.swift in Sources */,
-				F27E2838271B3769009B86A1 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
