@@ -11,10 +11,18 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        #if DEBUG
         view.backgroundColor = .systemGray6
+        #else
+        view.backgroundColor = .systemMint
+        #endif
+        
         view.addSubview(ProfileViewController.profileTableView)
         setupConstraints()
         setupTableView()
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

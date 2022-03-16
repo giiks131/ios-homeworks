@@ -1,9 +1,5 @@
 import UIKit
 
-struct Post {
-    let title: String
-}
-
 struct Constants {
     
     static let spacer: CGFloat = 16
