@@ -1,5 +1,6 @@
 import UIKit
 import StorageService
+import SnapKit
 
 class ProfileTableHeaderView: UITableViewHeaderFooterView {
     
@@ -12,7 +13,6 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         let backgroundFrame = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         backgroundFrame.backgroundColor = .black
         backgroundFrame.alpha = 0
-        backgroundFrame.translatesAutoresizingMaskIntoConstraints = false
         return backgroundFrame
     }()
 
@@ -24,7 +24,6 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         fullNameLabel.font = UIFont.systemFont(ofSize: Constants.CGFloatNumbers.px18, weight: .bold)
         fullNameLabel.textColor = .black
         fullNameLabel.numberOfLines = 1
-        fullNameLabel.translatesAutoresizingMaskIntoConstraints = false
         return fullNameLabel
     }()
     
@@ -36,7 +35,6 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         statusLabel.textColor = .gray
         statusLabel.numberOfLines = 1
         statusLabel.sizeToFit()
-        statusLabel.translatesAutoresizingMaskIntoConstraints = false
         return statusLabel
     }()
     
@@ -48,7 +46,6 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         avatarImageView.layer.borderColor = UIColor.white.cgColor
         avatarImageView.layer.masksToBounds = true
         avatarImageView.isUserInteractionEnabled = true
-        avatarImageView.translatesAutoresizingMaskIntoConstraints = false
         return avatarImageView
     }()
     
@@ -58,7 +55,6 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         crossImage.tintColor = .lightGray
         crossImage.alpha = 0
         crossImage.isUserInteractionEnabled = true
-        crossImage.translatesAutoresizingMaskIntoConstraints = false
         return crossImage
     }()
     
@@ -73,7 +69,6 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         statusTextField.layer.borderColor = UIColor.black.cgColor
         statusTextField.layer.borderWidth = 1
         statusTextField.addTarget(self, action: #selector(statusTextChanged(_:)), for: .editingChanged)
-        statusTextField.translatesAutoresizingMaskIntoConstraints = false
         return statusTextField
     }()
     
@@ -83,13 +78,12 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         setStatusButton.backgroundColor = .systemPurple
         setStatusButton.titleLabel?.textAlignment = .center
         setStatusButton.setTitleColor(.white, for: .normal)
-        setStatusButton.layer.cornerRadius = Constants.CGFloatNumbers.px4
+        setStatusButton.layer.cornerRadius = Constants.CGFloatNumbers.px8
         setStatusButton.layer.shadowOffset = CGSize(width: 4, height: 4)
         setStatusButton.layer.shadowRadius = Constants.CGFloatNumbers.px4
         setStatusButton.layer.shadowColor = UIColor.black.cgColor
         setStatusButton.layer.shadowOpacity = 0.7
         setStatusButton.addTarget(self, action: #selector(setStatus), for: .touchUpInside)
-        setStatusButton.translatesAutoresizingMaskIntoConstraints = false
         return setStatusButton
     }()
     
@@ -108,43 +102,43 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         contentView.addSubview(avatarImageView)
         contentView.addSubview(crossImage)
         
+        fullNameLabel.snp.makeConstraints { make in
+            make.top.equalTo(contentView.safeAreaLayoutGuide.snp.top).offset(Constants.CGFloatNumbers.px27)
+            make.leading.equalTo(avatarImageView.snp.trailing).offset(Constants.CGFloatNumbers.px16).priority(.high)
+        }
         
-        let buttonWidth = setStatusButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -Constants.CGFloatNumbers.px32)
-        buttonWidth.priority = .defaultHigh
+        avatarImageView.snp.makeConstraints { make in
+            make.top.equalTo(contentView.safeAreaLayoutGuide.snp.top).offset(Constants.CGFloatNumbers.px16)
+            make.leading.equalTo(contentView.safeAreaLayoutGuide.snp.leading).offset(Constants.CGFloatNumbers.px16)
+            make.width.lessThanOrEqualTo(Constants.CGFloatNumbers.px110)
+            make.height.equalTo(avatarImageView.snp.width)
+        }
         
-        let fullNameLeading =
-            fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: Constants.CGFloatNumbers.px16)
-        fullNameLeading.priority = .defaultHigh
+        crossImage.snp.makeConstraints { make in
+            make.top.equalTo(contentView.safeAreaLayoutGuide.snp.top).offset(Constants.CGFloatNumbers.px30)
+            make.leading.equalTo(contentView.safeAreaLayoutGuide.snp.trailing).offset(-Constants.CGFloatNumbers.px60)
+            make.width.height.equalTo(Constants.CGFloatNumbers.px45)
+        }
         
-        let constraints = [
-            fullNameLabel.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: Constants.CGFloatNumbers.px27),
-            fullNameLeading,
-          
-            avatarImageView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: Constants.CGFloatNumbers.px16),
-            avatarImageView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: Constants.CGFloatNumbers.px16),
-            avatarImageView.widthAnchor.constraint(lessThanOrEqualToConstant: Constants.CGFloatNumbers.px110),
-            avatarImageView.heightAnchor.constraint(equalTo: avatarImageView.widthAnchor),
-            
-            crossImage.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 30),
-            crossImage.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -60),
-            crossImage.widthAnchor.constraint(equalToConstant: 45),
-            crossImage.heightAnchor.constraint(equalToConstant: 45),
-
-            statusLabel.topAnchor.constraint(greaterThanOrEqualTo: avatarImageView.centerYAnchor, constant: Constants.CGFloatNumbers.px20),
-            statusLabel.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor),
-
-            statusTextField.topAnchor.constraint(equalTo: statusLabel.topAnchor, constant: Constants.CGFloatNumbers.px20),
-            statusTextField.leadingAnchor.constraint(equalTo: statusLabel.leadingAnchor, constant: Constants.CGFloatNumbers.px3),
-            statusTextField.widthAnchor.constraint(equalTo: setStatusButton.widthAnchor, multiplier: 0.5),
-            statusTextField.heightAnchor.constraint(equalToConstant: Constants.CGFloatNumbers.px35),
-
-            setStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: Constants.CGFloatNumbers.px10),
-            setStatusButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.CGFloatNumbers.px16),
-            setStatusButton.heightAnchor.constraint(equalToConstant: Constants.CGFloatNumbers.px50),
-            buttonWidth,
-        ]
+        statusLabel.snp.makeConstraints { make in
+            make.top.equalTo(avatarImageView.snp.bottom).offset(-Constants.CGFloatNumbers.px36)
+            make.leading.equalTo(fullNameLabel.snp.leading)
+            make.trailing.greaterThanOrEqualTo(contentView.snp.trailing).offset(-Constants.CGFloatNumbers.px16)
+        }
         
-        NSLayoutConstraint.activate(constraints)
+        statusTextField.snp.makeConstraints { make in
+            make.top.equalTo(statusLabel.snp.top).offset(Constants.CGFloatNumbers.px20)
+            make.leading.equalTo(statusLabel.snp.leading).offset(Constants.CGFloatNumbers.px3)
+            make.width.equalTo(setStatusButton.snp.width).multipliedBy(0.5)
+            make.height.equalTo(Constants.CGFloatNumbers.px35)
+        }
+        
+        setStatusButton.snp.makeConstraints { make in
+            make.top.equalTo(avatarImageView.snp.bottom).offset(Constants.CGFloatNumbers.px32)
+            make.leading.equalTo(contentView.snp.leading).offset(Constants.CGFloatNumbers.px16)
+            make.height.equalTo(Constants.CGFloatNumbers.px50)
+            make.width.equalTo(contentView.snp.width).offset(-Constants.CGFloatNumbers.px32).priority(.high)
+        }
     }
     
     override init(reuseIdentifier: String?) {
