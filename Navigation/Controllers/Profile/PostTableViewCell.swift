@@ -1,16 +1,21 @@
 import UIKit
+import iOSIntPackage
 
 class PostTableViewCell: UITableViewCell {
-
-    var post: ProfilePost? {
-        didSet {
-            postAuthor.text = post?.author
-            postDescription.text =  post?.description
-            postImage.image = UIImage(imageLiteralResourceName: post?.image ?? "image not found")
-            postAmountOfLikes.text = "Likes: \(post?.likes ?? 0)"
-            postAmoutOfViews.text = "Views: \(post?.views ?? 0)"
+    let IMGProcessor = ImageProcessor()
+    
+    func configurePosts(post: ProfilePost) {
+        postAuthor.text = post.author
+        postDescription.text =  post.description
+//            postImage.image = UIImage(imageLiteralResourceName: post?.image ?? "image not found")
+        let image = UIImage(named: post.image) ?? UIImage()
+        postAmountOfLikes.text = "Likes: \(post.likes)"
+        postAmoutOfViews.text = "Views: \(post.views)"
+        IMGProcessor.processImage(sourceImage: image, filter: post.filter) {
+            postImage.image = $0
         }
     }
+    
     
     private let postAuthor: UILabel = {
         let postAuthor = UILabel()

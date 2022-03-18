@@ -1,4 +1,5 @@
 import UIKit
+import iOSIntPackage
 
 struct ProfilePost {
     let author: String
@@ -6,6 +7,7 @@ struct ProfilePost {
     let image: String
     var likes: Int
     var views: Int
+    let filter: ColorFilter
 }
 
 struct Photo {
@@ -14,10 +16,10 @@ struct Photo {
 
 struct DataStorage {
    static let profileTableViewPosts = [
-        ProfilePost(author: "Жизненные коты", description: "Жизненно", image: "educationcat", likes: 4213, views: 63201),
-        ProfilePost(author: "Юморески", description: "warning: анекдоты про евреев", image: "anekdot", likes: 1852, views: 13215),
-        ProfilePost(author: "IT nerds", description: "узнали согласны?", image: "distant", likes: 438, views: 2361),
-        ProfilePost(author: "Mood for today", description: "которыб", image: "catfish", likes: 16, views: 78)
+    ProfilePost(author: "Жизненные коты", description: "Жизненно", image: "educationcat", likes: 4213, views: 63201, filter: .bloom(intensity: 2.0)),
+    ProfilePost(author: "Юморески", description: "warning: анекдоты про евреев", image: "anekdot", likes: 1852, views: 13215, filter: .crystallize(radius: 3)),
+    ProfilePost(author: "IT nerds", description: "узнали согласны?", image: "distant", likes: 438, views: 2361, filter: .colorInvert),
+    ProfilePost(author: "Mood for today", description: "которыб", image: "catfish", likes: 16, views: 78, filter: .sepia(intensity: 2))
     ]
     
     static let photosStorage = [

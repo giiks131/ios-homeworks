@@ -30,9 +30,14 @@ struct Constants {
         static let px24: CGFloat = 24
         static let px27: CGFloat = 27
         static let px28: CGFloat = 28
+        static let px30: CGFloat = 30
         static let px32: CGFloat = 32
         static let px35: CGFloat = 35
+        static let px36: CGFloat = 36
+        static let px42: CGFloat = 42
+        static let px45: CGFloat = 35
         static let px50: CGFloat = 50
+        static let px60: CGFloat = 60
         static let px64: CGFloat = 64
         static let px100: CGFloat = 100
         static let px110: CGFloat = 110
